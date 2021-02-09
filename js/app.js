@@ -9,8 +9,13 @@ function HornedCreature(image, title, description, keyword, horns){
 }
 
 HornedCreature.prototype.render=function(){
+  // Check if its been added to the select options yet
+  if(addSelect(this.keyword)){
+    return;
+  }
+
   // Grab the template and the elements within
-  const $template = $('#photo-template').clone();
+  const $template = $('#photo-template').clone().contents();
   const $h2 = $template.find('h2');
   const $img = $template.find('img');
   const $p = $template.find('p');
@@ -36,3 +41,10 @@ $.ajax('/data/page-1.json').then(creaturesJSON => {
     hornedCreature.render();
   });
 });
+
+function addSelect(keyword){
+  const $select = $('#keywordSelect');
+  $select.each(option => {
+    console.log(option);
+  });
+}

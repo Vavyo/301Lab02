@@ -6,6 +6,8 @@ Estimate of time needed to complete: 45 min
 
 Start time: 2:30
 
+we going on haiatus because it should be done but I havent a clue why it isnt working
+
 Finish time: _____
 
 Actual time needed to complete: _____

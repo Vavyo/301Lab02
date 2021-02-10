@@ -2,3 +2,24 @@
   font-family: 'Roboto', sans-serif;
 }
 
+footer{
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  padding: 10px;
+  text-align: center;
+  background-color: #0d1117;
+  color: aliceblue;
+}
+header{
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  padding: 10px;
+  text-align: center;
+  background-color: #0d1117;
+  color: aliceblue;
+}
+main{
+  margin-top: 80px;
+}

@@ -16,7 +16,7 @@ function HornedCreature(image, title, description, keyword, horns){
 HornedCreature.prototype.render=function(){
   // Add to the page
   // console.log('Render');
-  $('main').append(this['🍱🥤']);
+  $('#page-1').append(this['🍱🥤']);
 };
 
 $.ajax('./data/page-1.json').then(creaturesJSON => {

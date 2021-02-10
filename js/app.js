@@ -40,16 +40,25 @@ $.ajax('./data/page-1.json').then(creaturesJSON => {
 
 HornedCreature.prototype['😂😂😂'] = function() {
   // Grab the template and the elements within
-  const $template = $('#photo-template').clone().contents();
-  const $h2 = $template.find('h2');
-  const $img = $template.find('img');
-  const $p = $template.find('p');
 
-  // Populate the elements
-  $h2.text(this.title);
-  $img.attr('src', this.image);
-  $p.text(this.description);
-  return $template;
+  // Mustache
+  const template = document.getElementById('photo-template').innerHTML;
+  const rendered = Mustache.render(template, {name: this.title, image: this.image, description: this.description});
+  console.log(rendered);
+  return rendered;
+
+  /** jQuery
+   * const $template = $('#photo-template').clone().contents();
+   * const $h2 = $template.find('h2');
+   * const $img = $template.find('img');
+   * const $p = $template.find('p');
+   *
+   * // Populate the elements
+   * $h2.text(this.title);
+   * $img.attr('src', this.image);
+   * $p.text(this.description);
+   * return $template;
+   */
 };
 
 function addSelect(keyword){
@@ -78,9 +87,9 @@ function updatePage(){
   for (const creature of creatures) {
     console.log(creature.keyword);
     if (creature.keyword !== $selected){
-      creature['🍱🥤'].hide();
+      document.getElementById(creature.title).setAttribute("style", "display: none");
     }else{
-      creature['🍱🥤'].show();
+      document.getElementById(creature.title).setAttribute("style", "");
     }
   }
 }

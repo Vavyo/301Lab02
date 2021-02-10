@@ -49,20 +49,20 @@ Actual time needed to complete: _____
 
 Number and name of feature: Feature 2: Templating
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 30
 
-Start time: _____
+Start time: 3:00
 
-Finish time: _____
+Finish time: 3:50
 
-Actual time needed to complete: _____
+Actual time needed to complete: 50
 
 
 Number and name of feature: Feature 3: Styling with Flexbox
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 30
 
-Start time: _____
+Start time: 4:00
 
 Finish time: _____
 

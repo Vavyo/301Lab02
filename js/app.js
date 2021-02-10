@@ -1,4 +1,8 @@
 'use strict';
+/**
+ * @type {HornedCreature[]}
+ */
+const creatures = [];
 
 function HornedCreature(image, title, description, keyword, horns){
   this.image = image;
@@ -6,27 +10,13 @@ function HornedCreature(image, title, description, keyword, horns){
   this.description = description;
   this.keyword = keyword;
   this.horns = horns;
+  this['🍱🥤'] =this['😂😂😂']();
 }
 
 HornedCreature.prototype.render=function(){
-  // Check if its been added to the select options yet
-  if(addSelect(this.keyword)){
-    return;
-  }
-
-  // Grab the template and the elements within
-  const $template = $('#photo-template').clone().contents();
-  const $h2 = $template.find('h2');
-  const $img = $template.find('img');
-  const $p = $template.find('p');
-
-  // Populate the elements
-  $h2.text(this.title);
-  $img.attr('src', this.image);
-  $p.text(this.description);
-
   // Add to the page
-  $('main').append($template);
+  // console.log('Render');
+  $('main').append(this['🍱🥤']);
 };
 
 $.ajax('/data/page-1.json').then(creaturesJSON => {
@@ -38,13 +28,59 @@ $.ajax('/data/page-1.json').then(creaturesJSON => {
       properties.description,
       properties.keyword,
       properties.horns);
-    hornedCreature.render();
+    addSelect(hornedCreature.keyword);
+    creatures.push(hornedCreature);
+    // console.log(hornedCreature);
   });
+  for (const creature of creatures) {
+    // console.log("creature.title");
+    creature.render();
+  }
 });
+
+HornedCreature.prototype['😂😂😂'] = function() {
+  // Grab the template and the elements within
+  const $template = $('#photo-template').clone().contents();
+  const $h2 = $template.find('h2');
+  const $img = $template.find('img');
+  const $p = $template.find('p');
+
+  // Populate the elements
+  $h2.text(this.title);
+  $img.attr('src', this.image);
+  $p.text(this.description);
+  return $template;
+};
 
 function addSelect(keyword){
   const $select = $('#keywordSelect');
-  $select.each(option => {
-    console.log(option);
+  let exists = false;
+  $select.children().each(function() {
+    // console.log(this.text);
+    if(this.text === keyword){
+      exists = true ;
+    }
   });
+  if(exists){
+    return;
+  }
+  const $option = $('<option></option>').text(keyword);
+  $select.append($option);
+}
+
+document.getElementById('keywordSelect').addEventListener('change',updatePage);
+
+
+
+function updatePage(){
+  const $selected = $('#keywordSelect option:selected').text();
+  console.log($selected);
+  for (const creature of creatures) {
+    console.log(creature.keyword);
+    if (creature.keyword !== $selected){
+      creature['🍱🥤'].hide();
+    }else{
+      creature['🍱🥤'].show();
+    }
+  }
 }

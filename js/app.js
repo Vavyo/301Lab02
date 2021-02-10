@@ -19,7 +19,7 @@ HornedCreature.prototype.render=function(){
   $('main').append(this['🍱🥤']);
 };
 
-$.ajax('/data/page-1.json').then(creaturesJSON => {
+$.ajax('./data/page-1.json').then(creaturesJSON => {
   console.log(creaturesJSON);
   creaturesJSON.forEach(properties => {
     const hornedCreature = new HornedCreature(
